@@ -1,7 +1,14 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
+import Register from '../components/Register';
 
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <>
+      <Navbar />
+      <Register />
+    </>
+  );
 };
 
 export default RegisterPage;
