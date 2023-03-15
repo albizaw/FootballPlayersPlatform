@@ -51,7 +51,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`w-full bg-slate-400 text-black absolute z-10 left-0 h-fit py-10 md:hidden flex flex-col justify-center text-center duration-500 ${
+        className={`w-full bg-slate-200 text-black absolute z-10 left-0 h-fit py-10 md:hidden flex flex-col justify-center text-center duration-500 ${
           nav ? 'top-20 rounded-b-2xl  text-2xl gap-4' : 'top-[-100%]'
         }`}
       >
