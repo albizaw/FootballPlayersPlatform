@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/profile.png';
+import { toast, Toaster } from 'react-hot-toast';
+import { usernameRules, passwordRules } from '../helper/validation.js';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,7 +52,7 @@ const Login = () => {
             <div className="py-4 text-center">
               <span className="text-gray-500">
                 Don't you have an account?{' '}
-                <Link to="/signin" className="text-red-500 font-bold">
+                <Link to="/signup" className="text-red-500 font-bold">
                   {`Join Us`}
                 </Link>
               </span>
