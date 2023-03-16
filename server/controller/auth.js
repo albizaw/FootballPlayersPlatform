@@ -65,3 +65,24 @@ export const login = async (req, res) => {
     return res.status(500).json('Error');
   }
 };
+
+export const logout = async (req, res) => {
+  res.clearCookie('access_token');
+  return res.status(200).json({ message: 'You are log out' });
+};
+
+export const isLogIn = async (req, res) => {
+  const token = req.cookies.access_token;
+
+  if (!token) {
+    return res.status(500).json(false);
+  }
+
+  return jwt.verify(token, ENV.JWT_SECRET, (err) => {
+    if (err) {
+      return res.status(500).json(false);
+    } else {
+      return res.status(201).json(true);
+    }
+  });
+};
