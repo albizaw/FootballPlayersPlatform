@@ -8,6 +8,7 @@ import { usernameRules, passwordRules } from '../helper/validation.js';
 import axios from '../api/axios';
 
 const Register = () => {
+  const navigate = useNavigate();
   // react hook form
   const {
     register,
@@ -30,7 +31,6 @@ const Register = () => {
 
   // states and handlers
   const [file, setFile] = useState('');
-  const navigate = useNavigate();
 
   const fileHandler = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);
