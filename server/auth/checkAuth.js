@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import {} from 'jsonwebtoken';
 import ENV from '../config.js';
-import createError from '../error/createError.js';
 
 export default (req, res, next) => {
   console.log('start');
