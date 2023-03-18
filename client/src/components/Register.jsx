@@ -5,17 +5,24 @@ import convertToBase64 from '../helper/convert.js';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { usernameRules, passwordRules } from '../helper/validation.js';
+import axios from '../api/axios';
 
 const Register = () => {
   // react hook form
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await axios.post('/auth/register', data);
+      toast.success('Registered successfully');
+    } catch (error) {
+      toast.error('Register Failed!');
+    }
   };
 
   const usernameProps = register('username', usernameRules);
@@ -26,10 +33,18 @@ const Register = () => {
   const navigate = useNavigate();
 
   const fileHandler = async (e) => {
-    // console.log(e.target.files[0]);
     const base64 = await convertToBase64(e.target.files[0]);
-    //console.log(base64);
     setFile(base64);
+  };
+
+  const onClickHandler = () => {
+    {
+      errors.username &&
+        toast.error(errors.username.message, { duration: 2000 });
+      errors.password &&
+        toast.error(errors.password.message, { duration: 2000 });
+    }
+    setValue('file', file);
   };
 
   return (
@@ -82,14 +97,7 @@ const Register = () => {
               />
 
               <button
-                onClick={() => {
-                  {
-                    errors.username &&
-                      toast.error(errors.username.message, { duration: 1000 });
-                    errors.password &&
-                      toast.error(errors.password.message, { duration: 1000 });
-                  }
-                }}
+                onClick={onClickHandler}
                 type="submit"
                 className="text-lg border-2 w-3/4 rounded-xl p-5 bg-black text-white duration-500 hover:opacity-50"
               >

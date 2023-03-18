@@ -6,7 +6,7 @@ import checkAuth from '../auth/checkAuth.js';
 const router = Router();
 
 router.use('/auth', authRoutes);
-router.use('/users', usersRoutes);
+router.use('/users', checkAuth, usersRoutes);
 router.use('/platform', checkAuth, platformRoutes);
 
 export default router;
