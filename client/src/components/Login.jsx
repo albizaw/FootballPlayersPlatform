@@ -20,6 +20,7 @@ const Login = () => {
     try {
       await axios.post('/auth/login', data);
       toast.success('Login successfully');
+      navigate('/');
     } catch (error) {
       toast.error('Login Failed!');
     }
@@ -31,9 +32,9 @@ const Login = () => {
   const onClickHandler = () => {
     {
       errors.username &&
-        toast.error(errors.username.message, { duration: 1000 });
+        toast.error(errors.username.message, { duration: 2000 });
       errors.password &&
-        toast.error(errors.password.message, { duration: 1000 });
+        toast.error(errors.password.message, { duration: 2000 });
     }
   };
 
@@ -76,6 +77,7 @@ const Login = () => {
               />
 
               <button
+                onClick={onClickHandler}
                 type="submit"
                 className="text-lg border-2 w-3/4 rounded-xl p-5 bg-black text-white duration-500 hover:opacity-50"
               >
