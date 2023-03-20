@@ -58,9 +58,9 @@ export const login = async (req, res) => {
     console.log(ENV.JWT_SECRET);
 
     return res
-      .cookie('access_token', token)
+      .cookie('access_token', token, { httpOnly: false })
       .status(201)
-      .json({ message: 'login success' });
+      .json({ message: 'login success', token });
   } catch (error) {
     return res.status(500).json('Error');
   }

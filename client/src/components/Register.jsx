@@ -21,6 +21,9 @@ const Register = () => {
     try {
       await axios.post('/auth/register', data);
       toast.success('Registered successfully');
+      setTimeout(() => {
+        navigate('/signin');
+      }, 3000);
     } catch (error) {
       toast.error('Register Failed!');
     }

@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png';
-import ButtonNav from './ButtonNav';
-import { Link } from 'react-router-dom';
-
+import logo from '../../assets/logo.png';
+import ButtonNav from '../ButtonNav';
+import { Link, useNavigate } from 'react-router-dom';
+import avatar from '../../assets/profile.png';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import axios from '../../api/axios';
 
-const Navbar = () => {
+const NavbarPlatform = ({ file, username }) => {
+  const navigate = useNavigate();
+
   const links = [
     {
-      link: '/signin',
-      text: 'Sign In',
-      color: 'white',
-    },
-    {
-      link: '/signup',
-      text: 'Join',
+      link: '/',
+      text: 'Log Out',
       color: 'black',
     },
   ];
@@ -23,6 +21,16 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.get('/auth/logout');
+      navigate('/');
+      handleNav();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,10 +44,19 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <div className="gap-3 hidden md:flex">
+          <p className="md:font-normal md:block hidden">
+            You are logged in as:{' '}
+            <span className="text-lg font-bold">{`${username}`}</span>
+          </p>
+          <div className="gap-5 hidden md:flex">
+            <img
+              src={file || avatar}
+              alt="avatar"
+              className="mx-auto border-4 border-gray-100 w-[55px] rounded-full shadow-xl cursor-pointer hover:border-gray-200"
+            />
             {links.map(({ link, text, color, i }) => (
               <Link key={i} to={link}>
-                <ButtonNav text={text} color={color} />
+                <ButtonNav onClick={handleLogout} text={text} color={color} />
               </Link>
             ))}
           </div>
@@ -58,7 +75,7 @@ const Navbar = () => {
         {links.map(({ link, text, color, i }) => (
           <Link
             key={i}
-            onClick={handleNav}
+            onClick={handleLogout}
             className={`w-1/2 flex items-center mx-auto justify-center p-4 border-2 text-xl rounded-md font-bold ${
               color === 'black'
                 ? 'bg-black text-white duration-500 hover:opacity-50 '
@@ -69,9 +86,14 @@ const Navbar = () => {
             {text.toUpperCase()}
           </Link>
         ))}
+        <img
+          src={file || avatar}
+          alt="avatar"
+          className="mx-auto border-4 border-gray-100 w-[45px] rounded-full shadow-xl cursor-pointer hover:border-gray-200"
+        />
       </div>
     </>
   );
 };
 
-export default Navbar;
+export default NavbarPlatform;
