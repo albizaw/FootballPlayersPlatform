@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/profile.png';
 import { toast, Toaster } from 'react-hot-toast';
@@ -20,7 +20,8 @@ const Login = () => {
     try {
       await axios.post('/auth/login', data);
       toast.success('Login successfully');
-      navigate('/');
+
+      navigate('/platform');
     } catch (error) {
       toast.error('Login Failed!');
     }

@@ -4,11 +4,27 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import router from './routes/index.js';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+    allowedHeaders: [
+      'Origin',
+      'X-Requested-With',
+      'Content-Type',
+      'Accept',
+      'Authorization',
+    ],
+    credentials: true,
+  })
+);
 app.use(morgan('tiny'));
 app.use(cookieParser());
 

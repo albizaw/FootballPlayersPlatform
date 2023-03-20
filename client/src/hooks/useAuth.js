@@ -1,0 +1,26 @@
+import { useState, useEffect } from 'react';
+import axios from '../api/axios';
+
+export default () => {
+  const [auth, setAuth] = useState();
+
+  const verifyAuth = async () => {
+    try {
+      const res = await axios.get('/auth/islogin');
+      console.log(res.data);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const data = await verifyAuth();
+      setAuth(data);
+    })();
+  }, []);
+
+  return { auth };
+};
