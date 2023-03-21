@@ -48,15 +48,15 @@ const NavbarPlatform = ({ file, username }) => {
             You are logged in as:{' '}
             <span className="text-lg font-bold">{`${username}`}</span>
           </p>
-          <div className="gap-5 hidden md:flex">
+          <div className="gap-5 hidden md:flex items-center">
             <img
               src={file || avatar}
               alt="avatar"
-              className="mx-auto border-4 border-gray-100 w-[55px] rounded-full shadow-xl cursor-pointer hover:border-gray-200"
+              className="mx-auto border-4 border-gray-100 w-[60px] rounded-full shadow-xl cursor-pointer hover:border-gray-200"
             />
             {links.map(({ link, text, color, i }) => (
-              <Link key={i} to={link}>
-                <ButtonNav onClick={handleLogout} text={text} color={color} />
+              <Link onClick={handleLogout} key={i} to={link}>
+                <ButtonNav text={text} color={color} />
               </Link>
             ))}
           </div>

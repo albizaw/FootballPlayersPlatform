@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../api/axios';
+import API from '../../api/apidata.js';
+import { api } from '../../api/axios';
 
 const Platform = () => {
   // player name
+  const [data, setData] = useState([]);
+
   const [playerName, setPlayerName] = useState('');
   const footballerHandler = (e) => {
     setPlayerName(e.target.value);
@@ -13,6 +16,15 @@ const Platform = () => {
       console.log(e.target.value);
     }
   };
+
+  // useEffect(() => {
+  //   api
+  //     .get(`/players?api_token=${API.API_KEY}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   //request HTTP
 
