@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import API from '../../api/apidata.js';
-import { api } from '../../api/axios';
+import axios, { api } from '../../api/axios';
 
 const Platform = () => {
   // player name
-  const [data, setData] = useState([]);
+  const [players, setPlayers] = useState([]);
 
   const [playerName, setPlayerName] = useState('');
   const footballerHandler = (e) => {
@@ -17,14 +17,18 @@ const Platform = () => {
     }
   };
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/players?api_token=${API.API_KEY}`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get('/platform/allPlayers')
+      .then((response) => {
+        const data = response.data;
+        setPlayers(data.data);
+        //console.log(players[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   //request HTTP
 
@@ -46,7 +50,20 @@ const Platform = () => {
         </div>
       </div>
 
-      <div className="max-w-screen-2xl w-full h-full mt-10 md:border-4 p-4 md:rounded-xl border-gray-200"></div>
+      <div className="grid md:grid-cols-2 scrollable-div max-w-screen-2xl gap-20 w-full h-full mt-10 md:border-4 p-10 md:rounded-xl border-gray-200  overflow-y-scroll">
+        {players.map((player) => (
+          <div
+            key={player.id}
+            className="flex justify-center items-center mx-auto md:w-[500px] md:h-[300px] border-2 border-black"
+          >
+            <div className="w-full h-1/3 flex justify-between items-center">
+              {/* up */}
+            </div>
+
+            <div>{/* down */}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

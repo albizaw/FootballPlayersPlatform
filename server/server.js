@@ -7,12 +7,13 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
 dotenv.config();
+console.log(process.env.CORS);
 const app = express();
 
 app.use(express.json());
 app.use(
   cors({
-    origin: true,
+    origin: 'http://localhost:3000',
     optionsSuccessStatus: 200,
     methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
     allowedHeaders: [

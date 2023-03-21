@@ -6,6 +6,6 @@ export default axios.create({
   baseURL: 'http://localhost:8000',
 });
 
-export const api = axios.create({
-  baseURL: API.BASE_URL,
-});
+// export const api = axios.create({
+//   baseURL: API.BASE_URL,
+// });
