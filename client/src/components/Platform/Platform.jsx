@@ -50,17 +50,27 @@ const Platform = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 scrollable-div max-w-screen-2xl gap-20 w-full h-full mt-10 md:border-4 p-10 md:rounded-xl border-gray-200  overflow-y-scroll">
+      <div className="grid md:grid-cols-2 scrollable-div max-w-screen-2xl md:gap-20 gap-10 w-full h-full md:mt-10 mt-2 md:border-4 md:p-10 p-6 md:rounded-xl border-gray-200  overflow-y-scroll">
         {players.map((player) => (
           <div
             key={player.id}
-            className="flex justify-center items-center mx-auto md:w-[500px] md:h-[300px] border-2 border-black"
+            className="flex flex-col justify-center items-center mx-auto md:w-4/5 w-full md:h-[350px] h-[150px] w- border-2 border-black"
           >
-            <div className="w-full h-1/3 flex justify-between items-center">
+            <div className="w-full h-1/3 flex justify-between items-center p-4 bg-slate-200">
               {/* up */}
+              <div className="font-normal md:text-3xl text-xl italic">
+                {player.common_name}
+              </div>
+
+              <div className="font-light text-sm italic">
+                {player.date_of_birth}
+              </div>
             </div>
 
-            <div>{/* down */}</div>
+            <div className="h-2/3">
+              {/* down */}
+              tez cos
+            </div>
           </div>
         ))}
       </div>
