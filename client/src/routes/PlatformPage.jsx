@@ -19,7 +19,6 @@ const PlatformPage = () => {
           username: response.data.username,
           file: response.data.file,
         });
-
         setIsLoading(true);
       })
       .catch((error) => {
