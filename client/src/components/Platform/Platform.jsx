@@ -47,7 +47,7 @@ const Platform = () => {
             onKeyPress={handleKeyPress}
             type="text"
             placeholder="Name"
-            className="border-2 border-gray-100 p-5 rounded-xl w-3/4 shadow-sm focus:outline-none"
+            className="border-2 border-gray-100 text-xl p-5 rounded-xl w-3/4 shadow-sm focus:outline-none"
           />
         </div>
       </div>
