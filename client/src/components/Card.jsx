@@ -4,7 +4,7 @@ const Card = ({ player }) => {
   return (
     <div
       key={player.id}
-      className="flex flex-col justify-center items-center mx-auto md:w-full lg:w-4/5 sm:w-full  w-4/5 sm:h-[250px] md:h-[250px] border-4 border-gray-100 shadow-xl rounded-b-2xl duration-300 hover:scale-105 hover:shadow-2xl"
+      className="flex flex-col justify-center items-center mx-auto md:w-full lg:w-4/5 sm:w-full  w-4/5 h-[250px] sm:h-[250px] md:h-[250px] border-4 border-gray-100 shadow-xl rounded-b-2xl duration-300 hover:scale-105 hover:shadow-2xl"
     >
       <div className="w-full h-1/3 flex justify-between items-center p-4 bg-slate-200">
         {/* up */}
