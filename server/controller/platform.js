@@ -1,6 +1,6 @@
 import axios from '../api/axios.js';
 import Card from '../model/Card.model.js';
-import ENV from '../config.js';
+import * as dotenv from 'dotenv';
 
 //test request
 export const hello = (req, res) => {
@@ -11,7 +11,7 @@ export const hello = (req, res) => {
 export const allPlayers = async (req, res) => {
   try {
     axios
-      .get(`/players?api_token=${ENV.API_KEY}`)
+      .get(`/players?api_token=${process.env.API_KEY}`)
       .then((response) => {
         console.log('Hello from allPlayers');
         const data = response.data.data;
