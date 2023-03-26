@@ -1,5 +1,6 @@
 import User from '../model/User.model.js';
 import bcrypt from 'bcrypt';
+import * as dotenv from 'dotenv';
 import ENV from '../config.js';
 import {} from 'jsonwebtoken';
 import jwt from 'jsonwebtoken';
@@ -51,11 +52,11 @@ export const login = async (req, res) => {
       username: user.username,
     };
 
-    const token = jwt.sign(details, ENV.JWT_SECRET, {
+    const token = jwt.sign(details, process.env.JWT_SECRET, {
       expiresIn: '24h',
     });
 
-    console.log(ENV.JWT_SECRET);
+    //console.log(ENV.JWT_SECRET);
 
     return res
       .cookie('access_token', token, { httpOnly: false })
@@ -78,7 +79,7 @@ export const isLogIn = async (req, res) => {
     return res.status(500).json(false);
   }
 
-  return jwt.verify(token, ENV.JWT_SECRET, (err) => {
+  return jwt.verify(token, process.env.JWT_SECRET, (err) => {
     if (err) {
       return res.status(500).json(false);
     } else {
