@@ -30,10 +30,13 @@ app.use(morgan('tiny'));
 app.use(cookieParser());
 
 const port = 8000;
-
-mongoose.connect('mongodb://localhost:27017/FootballPlayersPlatform', {
-  useNewUrlParser: true,
-});
+//'mongodb://localhost:27017/FootballPlayersPlatform'
+mongoose.connect(
+  `mongodb+srv://albertzawada:${process.env.MONGO_DB}@footballplayerplatform.13xuwic.mongodb.net/?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+  }
+);
 
 // http get request
 app.get('/', (req, res) => {
