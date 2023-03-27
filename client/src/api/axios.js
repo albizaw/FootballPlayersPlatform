@@ -1,11 +1,11 @@
 import axios from 'axios';
-import API from './apidata.js';
 
 export default axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 // export const api = axios.create({
 //   baseURL: API.BASE_URL,
 // });
+//baseURL: 'http://localhost:8000',
