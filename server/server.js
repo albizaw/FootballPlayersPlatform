@@ -29,11 +29,14 @@ app.use(
 app.use(morgan('tiny'));
 app.use(cookieParser());
 
-const port = process.env.PORT || 8000;
+const port = 8000;
 //'mongodb://localhost:27017/FootballPlayersPlatform'
-mongoose.connect(process.env.MONGO_DB_URL, {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  `mongodb+srv://albertzawada:${process.env.MONGO_DB}@footballplayerplatform.13xuwic.mongodb.net/?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+  }
+);
 
 // http get request
 app.get('/', (req, res) => {
