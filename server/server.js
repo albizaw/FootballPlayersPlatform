@@ -7,13 +7,13 @@ import cookieParser from 'cookie-parser';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
-console.log(process.env.CORS);
+//console.log(process.env.CORS);
 const app = express();
 
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CORS,
+    origin: 'http://localhost:3000',
     optionsSuccessStatus: 200,
     methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
     allowedHeaders: [
@@ -31,12 +31,9 @@ app.use(cookieParser());
 
 const port = 8000;
 //'mongodb://localhost:27017/FootballPlayersPlatform'
-mongoose.connect(
-  `mongodb+srv://albertzawada:${process.env.MONGO_DB}@footballplayerplatform.13xuwic.mongodb.net/?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-  }
-);
+mongoose.connect(`${process.env.MONGO_DB_URL}`, {
+  useNewUrlParser: true,
+});
 
 // http get request
 app.get('/', (req, res) => {
