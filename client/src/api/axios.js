@@ -1,9 +1,8 @@
 import axios from 'axios';
-import API from './apidata.js';
 
 export default axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.SERVER_URL,
 });
 
 // export const api = axios.create({
