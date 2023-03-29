@@ -1,6 +1,7 @@
 import React from 'react';
 import Typical from 'react-typical';
 
+console.log(process.env.REACT_APP_SERVER_URL);
 const View = () => {
   return (
     <div className="flex w-full flex-col items-center justify-center w-full h-[calc(100vh-80px)] text-center  bg-slate-100">
