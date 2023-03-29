@@ -10,6 +10,20 @@ dotenv.config();
 //console.log(process.env.CORS);
 const app = express();
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', process.env.CORS);
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+  );
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 app.use(express.json());
 app.use(
   cors({
